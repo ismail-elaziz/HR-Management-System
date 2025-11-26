@@ -1,0 +1,64 @@
+﻿@model Projet_DotNet.Models.Employe
+
+@{
+    ViewData["Title"] = "Edit Employe";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+    <input type="hidden" asp-for="EmployeId" />
+
+    <div class="form-group">
+        <label asp-for="NomEmploye"></label>
+        <input asp-for="NomEmploye" class="form-control" />
+        <span asp-validation-for="NomEmploye" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PrenomEmploye"></label>
+        <input asp-for="PrenomEmploye" class="form-control" />
+        <span asp-validation-for="PrenomEmploye" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NationalId"></label>
+        <input asp-for="NationalId" class="form-control" />
+        <span asp-validation-for="NationalId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateNaissance"></label>
+        <input asp-for="DateNaissance" class="form-control" type="date" />
+        <span asp-validation-for="DateNaissance" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salaire"></label>
+        <input asp-for="Salaire" class="form-control" />
+        <span asp-validation-for="Salaire" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateEmbauche"></label>
+        <input asp-for="DateEmbauche" class="form-control" type="date" />
+        <span asp-validation-for="DateEmbauche" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DepartementId"></label>
+        <select asp-for="DepartementId" asp-items="@(new SelectList(ViewBag.Departements, "DepartementId", "NomDepartement"))" class="form-control">
+        </select>
+        <span asp-validation-for="DepartementId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserImage"></label>
+        <input asp-for="UserImage" type="file" class="form-control" />
+        <span asp-validation-for="UserImage" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

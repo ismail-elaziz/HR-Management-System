@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Projet_DotNet.Models.Departement>
+
+@{
+    ViewData["Title"] = "Gestion des Départements";
+}
+
+<div class="container mt-5">
+    <h1 class="text-primary text-center mb-4">Gestion des Départements</h1>
+
+    <!-- Bouton pour créer un nouveau département -->
+    <div class="text-end mb-4">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Ajouter un Département
+        </a>
+    </div>
+
+    <!-- Table des départements -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Nom du Département</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">Aucun département disponible.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.DepartementId</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.NomDepartement)</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.DepartementId" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Modifier
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.DepartementId" class="btn btn-info btn-sm">
+                                    <i class="bi bi-info-circle"></i> Détails
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.DepartementId" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Voulez-vous vraiment supprimer ce département ?')">
+                                    <i class="bi bi-trash"></i> Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

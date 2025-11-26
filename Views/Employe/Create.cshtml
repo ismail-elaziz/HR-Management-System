@@ -1,0 +1,48 @@
+﻿@model Projet_DotNet.Models.Employe
+
+@{
+    ViewData["Title"] = "Créer un Employé";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Créer un Employé</h1>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="NomEmploye" class="form-label"></label>
+            <input asp-for="NomEmploye" class="form-control" />
+            <span asp-validation-for="NomEmploye" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrenomEmploye" class="form-label"></label>
+            <input asp-for="PrenomEmploye" class="form-control" />
+            <span asp-validation-for="PrenomEmploye" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageFile" class="form-label"></label>
+            <input asp-for="ImageFile" type="file" class="form-control" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateNaissance" class="form-label"></label>
+            <input asp-for="DateNaissance" type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Salaire" class="form-label"></label>
+            <input asp-for="Salaire" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="DateEmbauche" class="form-label"></label>
+            <input asp-for="DateEmbauche" type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="NationalId" class="form-label"></label>
+            <input asp-for="NationalId" class="form-control" />
+        </div>
+        <label asp-for="Departement" class="form-label"></label>
+
+        <select asp-for="DepartementId" class="form-control" asp-items="@(new SelectList(ViewBag.Departements, "DepartementId", "NomDepartement"))"></select>
+
+        <button type="submit" class="btn btn-primary mt-3">Créer</button>
+    </form>
+</div>

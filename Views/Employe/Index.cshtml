@@ -1,0 +1,238 @@
+﻿@model IEnumerable<Projet_DotNet.Models.Employe>
+
+@{
+    ViewData["Title"] = "Liste des Employés";
+}
+
+<div>
+    <!-- Sidebar -->
+    <nav class="sidebar bg-dark text-white vh-100 p-3 position-fixed" style="width: 250px;">
+        <div class="sidebar-header mb-4">
+            <h3 class="text-center">Admin Panel</h3>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a asp-controller="Home" asp-action="Index" class="nav-link text-white">
+                    <i class="bi bi-house-door"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a asp-controller="Employe" asp-action="Index" class="nav-link text-white">
+                    <i class="bi bi-people"></i> Employés
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a asp-controller="Departement" asp-action="Index" class="nav-link text-white">
+                    <i class="bi bi-building"></i> Départements
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a asp-controller="Settings" asp-action="Index" class="nav-link text-white">
+                    <i class="bi bi-gear"></i> Paramètres
+                </a>
+            </li>
+            <li class="nav-item mt-4">
+                <a asp-controller="Account" asp-action="Logout" class="nav-link text-white">
+                    <i class="bi bi-box-arrow-right"></i> Déconnexion
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content" style="margin-left: 250px;">
+        <div class="container mt-4">
+            <h1 class="text-primary mb-4">Liste des Employés</h1>
+
+            <!-- Boutons d'actions -->
+            <div class="d-flex justify-content-between mb-3">
+                <a asp-controller="Departement" asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-building"></i> Gérer les Départements
+                </a>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Créer un nouvel employé
+                </a>
+            </div>
+
+            <!-- Grille des employés -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card shadow-sm h-100">
+                            <img src="Images/@item.UserImage" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Image Employé" />
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">@item.NomEmploye @item.PrenomEmploye</h5>
+                                <p class="card-text">
+                                    <strong>Département :</strong> @(item.Departement?.NomDepartement ?? "Non assigné")<br />
+                                    <strong>Date de naissance :</strong> @item.DateNaissance.ToString("dd/MM/yyyy")<br />
+                                    <strong>Salaire :</strong> @item.Salaire MAD<br />
+                                    <strong>National ID :</strong> @item.NationalId
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <a asp-action="Edit" asp-route-id="@item.EmployeId" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Modifier
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.EmployeId" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Voulez-vous vraiment supprimer cet employé ?')">
+                                    <i class="bi bi-trash"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Code Ex 2 *@
+@* @model IEnumerable<Projet_DotNet.Models.Employe> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Liste des Employés"; *@
+@* } *@
+
+@* <div class="d-flex"> *@
+@*     <!-- Sidebar --> *@
+@*     <nav class="sidebar bg-dark text-white vh-100 p-3" style="width: 250px; position: fixed;"> *@
+@*         <div class="sidebar-header mb-4"> *@
+@*             <h3 class="text-center">Admin Panel</h3> *@
+@*         </div> *@
+@*         <ul class="nav flex-column"> *@
+@*             <li class="nav-item mb-2"> *@
+@*                 <a asp-controller="Home" asp-action="Index" class="nav-link text-white"> *@
+@*                     <i class="bi bi-house-door"></i> Dashboard *@
+@*                 </a> *@
+@*             </li> *@
+@*             <li class="nav-item mb-2"> *@
+@*                 <a asp-controller="Employe" asp-action="Index" class="nav-link text-white"> *@
+@*                     <i class="bi bi-people"></i> Employés *@
+@*                 </a> *@
+@*             </li> *@
+@*             <li class="nav-item mb-2"> *@
+@*                 <a asp-controller="Departement" asp-action="Index" class="nav-link text-white"> *@
+@*                     <i class="bi bi-building"></i> Départements *@
+@*                 </a> *@
+@*             </li> *@
+@*             <li class="nav-item mb-2"> *@
+@*                 <a asp-controller="Settings" asp-action="Index" class="nav-link text-white"> *@
+@*                     <i class="bi bi-gear"></i> Paramètres *@
+@*                 </a> *@
+@*             </li> *@
+@*             <li class="nav-item mt-4"> *@
+@*                 <a asp-controller="Account" asp-action="Logout" class="nav-link text-white"> *@
+@*                     <i class="bi bi-box-arrow-right"></i> Déconnexion *@
+@*                 </a> *@
+@*             </li> *@
+@*         </ul> *@
+@*     </nav> *@
+
+@*     <!-- Main Content --> *@
+@*     <div class="content flex-grow-1 ms-3" style="margin-left: 250px;"> *@
+@*         <div class="container mt-4"> *@
+@*             <h1 class="text-primary mb-4">Liste des Employés</h1> *@
+
+@*             <!-- Boutons d'actions --> *@
+@*             <div class="d-flex justify-content-between mb-3"> *@
+@*                 <a asp-controller="Departement" asp-action="Index" class="btn btn-secondary"> *@
+@*                     <i class="bi bi-building"></i> Gérer les Départements *@
+@*                 </a> *@
+@*                 <a asp-action="Create" class="btn btn-success"> *@
+@*                     <i class="bi bi-plus-circle"></i> Créer un nouvel employé *@
+@*                 </a> *@
+@*             </div> *@
+
+@*             <!-- Grille des employés --> *@
+@*             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> *@
+@*                 @foreach (var item in Model) *@
+@*                 { *@
+@*                     <div class="col"> *@
+@*                         <div class="card shadow-sm h-100"> *@
+@*                             <img src="Images/@item.UserImage" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Image Employé" /> *@
+@*                             <div class="card-body"> *@
+@*                                 <h5 class="card-title text-primary">@item.NomEmploye @item.PrenomEmploye</h5> *@
+@*                                 <p class="card-text"> *@
+@*                                     <strong>Département :</strong> @(item.Departement?.NomDepartement ?? "Non assigné")<br /> *@
+@*                                     <strong>Date de naissance :</strong> @item.DateNaissance.ToString("dd/MM/yyyy")<br /> *@
+@*                                     <strong>Salaire :</strong> @item.Salaire MAD<br /> *@
+@*                                     <strong>National ID :</strong> @item.NationalId *@
+@*                                 </p> *@
+@*                             </div> *@
+@*                             <div class="card-footer d-flex justify-content-between"> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.EmployeId" class="btn btn-warning btn-sm"> *@
+@*                                     <i class="bi bi-pencil-square"></i> Modifier *@
+@*                                 </a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.EmployeId" class="btn btn-danger btn-sm" *@
+@*                                    onclick="return confirm('Voulez-vous vraiment supprimer cet employé ?')"> *@
+@*                                     <i class="bi bi-trash"></i> Supprimer *@
+@*                                 </a> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 } *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+@* Code Ex 1*@
+
+
+@* @model IEnumerable<Projet_DotNet.Models.Employe> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Liste des Employés"; *@
+@* } *@
+
+@* <div class="container mt-5"> *@
+@*     <h1 class="text-center text-primary mb-4">Liste des Employés</h1> *@
+
+@*     <!-- Bouton pour créer un employé --> *@
+@*     <div class="d-flex justify-content-between mb-3"> *@
+@*         <a asp-controller="Departement" asp-action="Index" class="btn btn-secondary"> *@
+@*             <i class="bi bi-building"></i> Gérer les Départements *@
+@*         </a> *@
+@*         <a asp-action="Create" class="btn btn-success"> *@
+@*             <i class="bi bi-plus-circle"></i> Créer un nouvel employé *@
+@*         </a> *@
+@*     </div> *@
+
+@*     <!-- Grille des employés --> *@
+@*     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> *@
+@*         @foreach (var item in Model) *@
+@*         { *@
+@*             <div class="col"> *@
+@*                 <div class="card shadow-sm h-100"> *@
+@*                     <!-- Image de l'employé --> *@
+@*                     <img src="Images/@item.UserImage" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Image Employé" /> *@
+
+@*                     <!-- Informations de l'employé --> *@
+@*                     <div class="card-body"> *@
+@*                         <h5 class="card-title text-primary">@item.NomEmploye @item.PrenomEmploye</h5> *@
+@*                         <p class="card-text"> *@
+@*                             <strong>Département :</strong> @(item.Departement?.NomDepartement ?? "Non assigné")<br /> *@
+@*                             <strong>Date de naissance :</strong> @item.DateNaissance.ToString("dd/MM/yyyy")<br /> *@
+@*                             <strong>Salaire :</strong> @item.Salaire MAD<br /> *@
+@*                             <strong>National ID :</strong> @item.NationalId *@
+@*                         </p> *@
+@*                     </div> *@
+
+@*                     <!-- Boutons d'action --> *@
+@*                     <div class="card-footer d-flex justify-content-between"> *@
+@*                         <a asp-action="Edit" asp-route-id="@item.EmployeId" class="btn btn-warning btn-sm"> *@
+@*                             <i class="bi bi-pencil-square"></i> Modifier *@
+@*                         </a> *@
+@*                         <a asp-action="Delete" asp-route-id="@item.EmployeId" class="btn btn-danger btn-sm" *@
+@*                            onclick="return confirm('Voulez-vous vraiment supprimer cet employé ?')"> *@
+@*                             <i class="bi bi-trash"></i> Supprimer *@
+@*                         </a> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         } *@
+@*     </div> *@
+@* </div> *@
